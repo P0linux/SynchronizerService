@@ -5,18 +5,7 @@ VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SynchronizerService", "SynchronizerService\SynchronizerService.csproj", "{06835300-0529-4626-BBA0-7EB8501479D0}"
 EndProject
-Project("{911E67C6-3D85-4FCE-B560-20A9C3E3FF48}") = "SynchronizerServiceSettings", "..\SynchronizerServiceSettings\SynchronizerServiceSettings\bin\Debug\SynchronizerServiceSettings.exe", "{E42743CF-A010-4531-819C-2DFFDDE63DA5}"
-	ProjectSection(DebuggerProjectSystem) = preProject
-		PortSupplier = 00000000-0000-0000-0000-000000000000
-		Executable = C:\Users\polly\source\repos\SynchronizerServiceSettings\SynchronizerServiceSettings\bin\Debug\SynchronizerServiceSettings.exe
-		RemoteMachine = DESKTOP-HDUMDOH
-		StartingDirectory = C:\Users\polly\source\repos\SynchronizerServiceSettings\SynchronizerServiceSettings\bin\Debug
-		Environment = По умолчанию
-		LaunchingEngine = 00000000-0000-0000-0000-000000000000
-		UseLegacyDebugEngines = No
-		LaunchSQLEngine = No
-		AttachLaunchAction = No
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SynchronizerServiceSettings", "SynchronizerServiceSettings\SynchronizerServiceSettings\SynchronizerServiceSettings.csproj", "{7BE7FBB2-1A2B-4BC9-BBE8-2E430F68BA22}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,10 +23,14 @@ Global
 		{06835300-0529-4626-BBA0-7EB8501479D0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{06835300-0529-4626-BBA0-7EB8501479D0}.Release|x86.ActiveCfg = Release|Any CPU
 		{06835300-0529-4626-BBA0-7EB8501479D0}.Release|x86.Build.0 = Release|Any CPU
-		{E42743CF-A010-4531-819C-2DFFDDE63DA5}.Debug|Any CPU.ActiveCfg = Release
-		{E42743CF-A010-4531-819C-2DFFDDE63DA5}.Debug|x86.ActiveCfg = Release
-		{E42743CF-A010-4531-819C-2DFFDDE63DA5}.Release|Any CPU.ActiveCfg = Release
-		{E42743CF-A010-4531-819C-2DFFDDE63DA5}.Release|x86.ActiveCfg = Release
+		{7BE7FBB2-1A2B-4BC9-BBE8-2E430F68BA22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BE7FBB2-1A2B-4BC9-BBE8-2E430F68BA22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BE7FBB2-1A2B-4BC9-BBE8-2E430F68BA22}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7BE7FBB2-1A2B-4BC9-BBE8-2E430F68BA22}.Debug|x86.Build.0 = Debug|Any CPU
+		{7BE7FBB2-1A2B-4BC9-BBE8-2E430F68BA22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BE7FBB2-1A2B-4BC9-BBE8-2E430F68BA22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BE7FBB2-1A2B-4BC9-BBE8-2E430F68BA22}.Release|x86.ActiveCfg = Release|Any CPU
+		{7BE7FBB2-1A2B-4BC9-BBE8-2E430F68BA22}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

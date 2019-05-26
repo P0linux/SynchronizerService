@@ -41,7 +41,11 @@ namespace SynchronizerServiceSettings
 
         public void WriteFile(string info)
         {
-            string path = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.Parent.FullName + "\\settings.cfg";
+            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\SynchronizerService"))
+            {
+                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\SynchronizerService");
+            }
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\SynchronizerService\\settings.cfg";
             using (StreamWriter writer = new StreamWriter(path, true))
             {
                 writer.WriteLine(info);
@@ -73,7 +77,7 @@ namespace SynchronizerServiceSettings
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string path = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.Parent.FullName + "\\settings.cfg";
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\SynchronizerService\\settings.cfg";
             using (StreamReader reader = new StreamReader(path))
             {
                 while ((line = reader.ReadLine()) != null)

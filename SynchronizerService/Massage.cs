@@ -37,7 +37,7 @@ namespace SynchronizerService
                 String message = String.Format("All {0} files were copied from {1} to {2}", wildcard, sourceFolder, targetFolder);
                 int mlen = message.Length;
                 int resp = 0;
-                result = WTSSendMessage(WTS_CURRENT_SERVER_HANDLE, WTS_CURRENT_SESSION, title, tlen, message, mlen, 0, 0, out resp, false);
+                result = WTSSendMessage(WTS_CURRENT_SERVER_HANDLE, WTS_CURRENT_SESSION, title, tlen, message, mlen, 0, 5, out resp, false);
                 //int err = Marshal.GetLastWin32Error();
             }
             catch (Exception x)

@@ -14,8 +14,9 @@ namespace SynchronizerServiceSettings
 {
     public partial class Form1 : Form
     {
-        string _folderPath;
-        string _folderPath2;
+        string _folderSourcePath;
+        string _folderTargetPath;
+        string _settingsFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\SynchronizerService";
         string line;
 
         public Form1()
@@ -23,29 +24,34 @@ namespace SynchronizerServiceSettings
             InitializeComponent();
         }
 
+        public void CreateDirectory(string directoryPath)
+        {
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+        }
+
         private void btnSource_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
             if (folderBrowserDialog.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
-            _folderPath = folderBrowserDialog.SelectedPath;
-            WriteFile("Source folder:" + _folderPath);
+            _folderSourcePath = folderBrowserDialog.SelectedPath;
+            WriteFile("Source folder:" + _folderSourcePath);
         }
 
         private void btnTarget_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog folderBrowserDialog2 = new FolderBrowserDialog();
             if (folderBrowserDialog2.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
-            _folderPath2 = folderBrowserDialog2.SelectedPath;
-            WriteFile("Target folder:" + _folderPath2);
+            _folderTargetPath = folderBrowserDialog2.SelectedPath + "\\copiedFiles";
+            WriteFile("Target folder:" + _folderTargetPath);
         }
 
         public void WriteFile(string info)
         {
-            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\SynchronizerService"))
-            {
-                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\SynchronizerService");
-            }
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\SynchronizerService\\settings.cfg";
+            CreateDirectory(_settingsFolderPath);
+            string path = _settingsFolderPath + "\\settings.cfg";
             using (StreamWriter writer = new StreamWriter(path, true))
             {
                 writer.WriteLine(info);
@@ -60,6 +66,7 @@ namespace SynchronizerServiceSettings
 
         private void btnStart_Click(object sender, EventArgs e)
         {
+            CreateDirectory(_folderTargetPath);
             string time = txbTime.Text;
             WriteFile("Interval:" + time);
             string cmdCommand = "/C net start SynchronizerService";
@@ -77,7 +84,7 @@ namespace SynchronizerServiceSettings
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\SynchronizerService\\settings.cfg";
+            string path = _settingsFolderPath + "\\settings.cfg";
             using (StreamReader reader = new StreamReader(path))
             {
                 while ((line = reader.ReadLine()) != null)
@@ -109,7 +116,7 @@ namespace SynchronizerServiceSettings
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-            string path = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.Parent.FullName + "\\settings.cfg";
+            string path = _settingsFolderPath + "\\settings.cfg";
             File.WriteAllText(path, String.Empty);
         }
     }

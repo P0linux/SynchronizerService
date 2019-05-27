@@ -66,7 +66,7 @@ namespace SynchronizerService
 
         public void getSettings()
         {
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\SynchronizerService\\settings.cfg";
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\SynchronizerService\\settings.cfg";
             using (StreamReader reader = new StreamReader(path))
             {
                 while ((line = reader.ReadLine()) != null)

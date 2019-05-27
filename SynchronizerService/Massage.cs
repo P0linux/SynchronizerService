@@ -38,6 +38,7 @@ namespace SynchronizerService
                 int mlen = message.Length;
                 int resp = 0;
                 result = WTSSendMessage(WTS_CURRENT_SERVER_HANDLE, WTS_CURRENT_SESSION, title, tlen, message, mlen, 0, 5, out resp, false);
+                Debug.WriteLine(1);
                 //int err = Marshal.GetLastWin32Error();
             }
             catch (Exception x)

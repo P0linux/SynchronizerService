@@ -40,6 +40,7 @@ namespace SynchronizerService
         {
             settings = new Settings();
             message = new Massage();
+            //Debugger.Launch();
             settings.getSettings();
             Timer timer = new Timer();
             timer.Interval = 10000;
@@ -67,6 +68,7 @@ namespace SynchronizerService
         private void OnTimedEvent(object sender, ElapsedEventArgs e)
         {
             copy();
+            Debugger.Launch();
             message.showMessage(settings.Wildcard, settings.SourceFolder, settings.TargetFolder);
             //Thread messageThread = new Thread(new ThreadStart(copy));
             //messageThread.Start();

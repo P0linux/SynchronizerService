@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace SynchronizerService
 {
     class Settings
@@ -15,6 +16,7 @@ namespace SynchronizerService
         string targetFolder;
         string wildcard;
         string interval;
+        string messageShow;
 
         public string Wildcard
         {
@@ -64,6 +66,18 @@ namespace SynchronizerService
             }
         }
 
+        public string MessageShow
+        {
+            get
+            {
+                return messageShow;
+            }
+            set
+            {
+                messageShow = value;
+            }
+        }
+
         public void getSettings()
         {
             string path = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\SynchronizerService\\settings.cfg";
@@ -71,27 +85,50 @@ namespace SynchronizerService
             {
                 while ((line = reader.ReadLine()) != null)
                 {
-                    if (line.Contains("Source folder:"))
+                    string settingName = line.Remove(line.IndexOf(":"));
+                    string setting = line.Remove(0, line.IndexOf(":") + 1);
+                    switch (settingName)
                     {
-                        sourceFolder = line.Remove(0, line.IndexOf(":") + 1);
-                        Debug.WriteLine(sourceFolder);
-                    }
-                    else if (line.Contains("Target folder:"))
-                    {
-                        targetFolder = line.Remove(0, line.IndexOf(":") + 1);
-                        Debug.WriteLine(targetFolder);
-                    }
-                    else if (line.Contains("Wildcard:"))
-                    {
-                        wildcard = line.Remove(0, line.IndexOf(":") + 1);
-                        Debug.WriteLine(wildcard);
-                    }
-                    else if (line.Contains("Interval:"))
-                    {
-                        interval = line.Remove(0, line.IndexOf(":") + 1);
-                        Debug.WriteLine(interval);
+                        case ("Source folder"):
+                            sourceFolder = setting;
+                            break;
+                        case ("Target folder"):
+                            targetFolder = setting;
+                            break;
+                        case ("Wildcard"):
+                            wildcard = setting;
+                            break;
+                        case ("Interval"):
+                            interval = setting;
+                            break;
+                        case ("Message"):
+                            messageShow = setting;
+                            break;
                     }
                 }
+                //while ((line = reader.ReadLine()) != null)
+                //{
+                //    if (line.Contains("Source folder:"))
+                //    {
+                //        sourceFolder = line.Remove(0, line.IndexOf(":") + 1);
+                //        Debug.WriteLine(sourceFolder);
+                //    }
+                //    else if (line.Contains("Target folder:"))
+                //    {
+                //        targetFolder = line.Remove(0, line.IndexOf(":") + 1);
+                //        Debug.WriteLine(targetFolder);
+                //    }
+                //    else if (line.Contains("Wildcard:"))
+                //    {
+                //        wildcard = line.Remove(0, line.IndexOf(":") + 1);
+                //        Debug.WriteLine(wildcard);
+                //    }
+                //    else if (line.Contains("Interval:"))
+                //    {
+                //        interval = line.Remove(0, line.IndexOf(":") + 1);
+                //        Debug.WriteLine(interval);
+                //    }
+                //}
             }
         }
     }

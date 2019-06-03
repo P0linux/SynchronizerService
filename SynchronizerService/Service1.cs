@@ -40,39 +40,32 @@ namespace SynchronizerService
         {
             settings = new Settings();
             message = new Massage();
-            //Debugger.Launch();
+            Debugger.Launch();
             settings.getSettings();
             Timer timer = new Timer();
-            timer.Interval = 10000;
+            timer.Interval = GetInterval();
             timer.Elapsed += OnTimedEvent;
             timer.Start();
-            //File.Create(@"D:\file.txt");
-            //copyFile.copyFiles();
-            //copyFile = new CopyFiles();
+        }
 
-
-            //message = new Massage();
-            //copyFile.getSettings();
-            //message.showMessage(copyFile.Wildcard, copyFile.SourceFolder, copyFile.TargetFolder);
-
-            //Thread.Sleep(1000);
-
-            //copyFile.getSettings();
-            //Thread.Sleep(2000);
-            //Thread copyFileThread = new Thread(new ThreadStart(copyFile.copyFiles));
-            //copyFileThread.Start();
-            //message = new Massage();
-            //message.showMessage(copyFile.Wildcard, copyFile.SourceFolder, copyFile.TargetFolder);
+        private int GetInterval()
+        {
+            return Convert.ToInt32(settings.Interval) * 1000;
         }
 
         private void OnTimedEvent(object sender, ElapsedEventArgs e)
         {
-            copy();
-            Debugger.Launch();
-            message.showMessage(settings.Wildcard, settings.SourceFolder, settings.TargetFolder);
-            //Thread messageThread = new Thread(new ThreadStart(copy));
-            //messageThread.Start();
-            Debug.WriteLine(1);
+            switch (settings.MessageShow)
+            {
+                case ("show"):
+                    Сopy();
+                    message.ShowMessage(settings.Wildcard, settings.SourceFolder, settings.TargetFolder);
+                    break;
+                case ("hide"):
+                    Сopy();
+                    break;
+            }
+            
         }
 
         protected override void OnStop()
@@ -80,19 +73,16 @@ namespace SynchronizerService
             Thread.Sleep(1000);
         }
 
-        public void copy()
+        public void Сopy()
         {
             copyFile = new CopyFiles();
-            copyFile.copyFiles(settings.SourceFolder, settings.TargetFolder, settings.Wildcard);
-            //using (StreamWriter wr = new StreamWriter(@"D:\test1.txt", true))
-            //{
-            //    wr.WriteLine(copyFile.Wildcard, copyFile.SourceFolder, copyFile.TargetFolder);
-            //}
-            //message.showMessage(copyFile.Wildcard, copyFile.SourceFolder, copyFile.TargetFolder);
-            //copyFile = new CopyFiles();
-            //copyFile.getSettings();
-            //copyFile.copyFiles();
+            copyFile.CopyAllFiles(settings.SourceFolder, settings.TargetFolder, settings.Wildcard);
+            //Thread thread = new Thread(new ThreadStart(ShowMessage));
+        }
 
+        public void ShowMessage()
+        {
+            message.ShowMessage(settings.Wildcard, settings.SourceFolder, settings.TargetFolder);
         }
     }
 }
